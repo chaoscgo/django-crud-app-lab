@@ -1,0 +1,34 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/members/member-index.css' %}"/>
+{% endblock %} 
+{% block content %}
+
+<section class="page-header">
+  <h1>Member List</h1>
+  <img src="" alt="Pickleball player" />
+</section>
+
+<section class="card-container">
+  {% for member in members %}
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img
+            src="{% static '' %}"
+            alt="Pickleball player"
+          />
+        </div>
+        <h2 class="card-title">{{ member.name }}</h2>
+        {% if member.dupr >= 3.0 %}
+        <p>A {{ member.age }} year old {{ member.dupr }} experienced player.</p>
+        {% else %}
+        <p>A {{ member.age }} year old beginner player.</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

@@ -20,13 +20,14 @@
     <header>
       <div class="header-logo-container">
         <a href="/">
-          <img src="{% static '' %}" alt="Pickleballers Logo" />
+          <img class= "logo-image" src="{% static 'images/Pickleball.jpg' %}" alt="Pickleballers Logo" />
         </a>
       </div>
       <nav>
         <ul>
-          <li><a href="/members">Pickleball members</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="{% url 'member-index' %}">Pickleball members</a></li>
+          <li><a href="{% url 'member-create' %}">Add a Pickleballer</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
         </ul>
       </nav>
     </header>

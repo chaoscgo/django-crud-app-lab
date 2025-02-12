@@ -101,6 +101,12 @@ html {
     padding: 10px 20px 0;
     max-width: 500px;
   }
+
+  .logo-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
   
   .page-header {
     display: flex;

@@ -13,20 +13,22 @@
 <section class="card-container">
   {% for member in members %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img
-            src=""
-            alt="Pickleball player"
-          />
+        <a href="{% url 'member-detail' member.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img
+              src=""
+              alt="Pickleball player"
+            />
+          </div>
+          <h2 class="card-title">{{ member.name }}</h2>
+          {% if member.dupr >= 3.0 %}
+          <p>A {{ member.age }} year old {{ member.dupr }} experienced player.</p>
+          {% else %}
+          <p>A {{ member.age }} year old beginner player.</p>
+          {% endif %}
         </div>
-        <h2 class="card-title">{{ member.name }}</h2>
-        {% if member.dupr >= 3.0 %}
-        <p>A {{ member.age }} year old {{ member.dupr }} experienced player.</p>
-        {% else %}
-        <p>A {{ member.age }} year old beginner player.</p>
-        {% endif %}
-      </div>
+      </a>
     </div>
   {% endfor %}
 </section>

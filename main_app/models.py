@@ -3,8 +3,8 @@ from django.urls import reverse
 
 
 OUTCOMES = (
-    ('t', 'I won this game!'),
-    ('f', 'I lost this game.')
+    (True, 'I won this game!'),
+    (False, 'I lost this game.')
 )
 
 
@@ -21,11 +21,10 @@ class Member(models.Model):
         return reverse('member-detail', kwargs={'member_id': self.id})
     
 class Game(models.Model):
-    date = models.DateField()
+    date = models.DateField('Game Date')
     winner = models.BooleanField(
-        max_length = 1,
         choices = OUTCOMES,
-        default=OUTCOMES[0][0]
+        default=OUTCOMES[False]
     )
 
     member = models.ForeignKey(Member, on_delete=models.CASCADE)

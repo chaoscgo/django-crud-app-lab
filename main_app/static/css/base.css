@@ -100,6 +100,7 @@ html {
     margin: auto;
     padding: 10px 20px 0;
     max-width: 500px;
+    height: auto;
   }
 
   .logo-image {
@@ -273,6 +274,7 @@ html {
       nav,
       .header-logo-container {
         background: rgba(104, 197, 248, 0.6);
+        margin: auto;
         -webkit-backdrop-filter: blur(3px);
         backdrop-filter: blur(3px);
       }

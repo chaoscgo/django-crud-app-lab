@@ -6,7 +6,19 @@
 {% block content %}
 <section class="member-container">
   <div class="member-img">
-    <img src="" alt="A pickleballer in action" />
+    {% if member.gender == 'm' %}
+        <img
+          class= "logo-image"
+          src="{% static 'images/pexels-anhleephoto-29439364.jpg' %}"
+          alt="Pickleball player"
+        />
+    {% else %}
+        <img
+          class = "logo-image"
+          src="{% static 'images/pexels-minh-khang-le-464812636-26501942.jpg' %}"
+          alt="Pickleball player"
+         />
+    {% endif %}
   </div>
   <div class="member-details">
     <h1>{{ member.name }}</h1>

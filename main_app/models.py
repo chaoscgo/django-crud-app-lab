@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import date
 from django.contrib.auth.models import User
 
 
@@ -31,6 +32,9 @@ class Member(models.Model):
     
     def get_absolute_url(self):
         return reverse('member-detail', kwargs={'member_id': self.id})
+    
+    def played_today(self):
+        return self.game_set.filter(date=date.today()).count() >= 1
     
 class Game(models.Model):
     date = models.DateField('Game Date')

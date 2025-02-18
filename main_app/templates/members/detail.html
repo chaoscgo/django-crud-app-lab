@@ -48,6 +48,11 @@
       class="subsection-content" 
       autocomplete="off"
     >
+      {% if member.played_today %}
+      <p class="fed">{{member.name}} got out and played today - Good job!</p>
+      {% else %}
+      <p class="unfed">{{member.name}} hasn't played today.  What are you waiting for?</p>
+      {% endif %}
       {% csrf_token %}
       {{ game_form.as_p }}
       <button type="submit" class="btn submit">Add a Game</button>

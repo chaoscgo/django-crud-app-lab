@@ -36,4 +36,10 @@
     margin: 5px 0;
     font-size: var(--font-reg);
   }
+
+  .logo-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
   

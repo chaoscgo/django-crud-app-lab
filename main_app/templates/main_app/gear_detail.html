@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/gears/gear-detail.css' %}" />
+{% endblock %} 
+{% block content %}
+
+<div class="card" style="border-color: {{ gear.color }}">
+  <div class="card-bg" style="background-color: {{ gear.color }}"></div>
+  <div class="card-content">
+    <h2>{{ gear.name }}</h2>
+    <p>{{ gear.color }} {{ gear.name }}</p>
+  </div>
+</div>
+<a href="{% url 'gear-update' gear.id %}" class="btn warn">Edit</a>
+<a href="{% url 'gear-delete' gear.id %}" class="btn danger">Delete</a>
+
+
+{% endblock %}

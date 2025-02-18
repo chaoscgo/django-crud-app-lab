@@ -27,7 +27,6 @@
     {% else %}
     <p>A {{ member.age }} year old beginner player.</p>
     {% endif %}
-    <p>{{ cat.description }}</p>
 
     <div class="member-actions">
       <a href="{% url 'member-update' member.id %}" class="btn warn">Edit</a>
@@ -35,4 +34,98 @@
     </div>
   </div>
 </section>
+
+<div class="games-gear-container">
+  <section class="games">
+    <div class="subsection-title">
+      <h2>Games</h2>
+    </div>
+
+    <h3>Add a Game</h3>
+    <form 
+      action="{% url 'add-game' member.id %}"
+      method="post" 
+      class="subsection-content" 
+      autocomplete="off"
+    >
+      {% csrf_token %}
+      {{ game_form.as_p }}
+      <button type="submit" class="btn submit">Add a Game</button>
+    </form>
+
+    <h3>Past Games</h3>
+    {% if member.game_set.all.count %}
+     <table>
+       <thead>
+         <tr>
+           <th>Date</th>
+           <th>Outcome</th>
+         </tr>
+       </thead>
+       <tbody>
+          {% for game in member.game_set.all %}
+            <tr>
+              <td>{{game.date}}</td>
+              <td>{{game.get_winner_display}}</td>
+            </tr>
+          {% endfor %}
+       </tbody>
+     </table>
+    {% else %}
+     <div class="subsection-content">
+        <p>{{member.name}} has no games yet.  Get out and play!</p>
+     </div>
+    {% endif %}
+  </section>
+
+  <section class="gears">
+    <div class="subsection-title">
+      <h2>Pickleball Gear</h2>
+      <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
+      <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
+      <img src="{% static 'images/fish.svg' %}" alt="A fishy toy" />
+    </div>
+
+    <h3>{{ member.name }}'s Gear</h3>
+    <div class="subsection-content">
+      {% if member.gears.count %} 
+        {% for gear in member.gears.all %}
+          <div class="gear-container">
+            <div class="color-block" style="background-color: {{ gear.color }}"></div>
+            <a href="{% url 'gear-detail' gear.id %}">
+              <p>{{ gear.color }} {{ gear.name }}</p>
+              <form action="{% url 'remove-gear' member.id gear.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Remove Gear</button>
+               </form> 
+            </a>
+          </div>
+        {% endfor %} 
+      {% else %}
+        <p class="no-gears">{{member.name}} doesn't have any gear!</p>
+      {% endif %}
+    </div>
+
+    <h3>Available Gear</h3>
+    <div class="subsection-content">
+      {% if gears.count %}
+       {% for gear in gears %}
+         <div class="gear-container">
+           <div class="color-block" style="background-color: {{ gear.color }}"></div>
+           <p>{{ gear.color }} {{ gear.name }}</p>
+           <form action="{% url 'associate-gear' member.id gear.id %}" method="post">
+             {% csrf_token %}
+             <button type="submit" class="btn submit">Assign Gear</button>
+           </form>
+         </div>
+        {% endfor %}
+      {% else %}
+         <p class="all-gears">{{member.name}} already has all of the available gear.</p>
+      {% endif %}
+    </div>
+  </section>
+
+</div>
+
+
 {% endblock %}
